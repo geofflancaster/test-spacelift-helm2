@@ -5,6 +5,9 @@ resource "helm_release" "karpenter" {
     namespace  = var.karpenter_namespace
     version = "1.3.0"
     create_namespace = true
+
+    replace = true
+
     set = [
         {
             name = "settings.clusterName"

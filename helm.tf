@@ -7,6 +7,8 @@ resource "helm_release" "opencost" {
 
   atomic = true
   wait   = true
+
+  replace = true
 }
 
 
@@ -20,6 +22,8 @@ resource "helm_release" "pingdirectory" {
 
   atomic = true
   wait   = true
+
+  replace = true
 
   set = [
     {
