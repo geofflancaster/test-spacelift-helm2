@@ -7,7 +7,6 @@ resource "helm_release" "karpenter" {
     create_namespace = true
 
     replace = true
-    upgrade_install = true
 
     set = [
         {
