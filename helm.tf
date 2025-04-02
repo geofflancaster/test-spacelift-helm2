@@ -9,6 +9,7 @@ resource "helm_release" "opencost" {
   wait   = true
 
   replace = true
+  upgrade_install = true
 }
 
 
@@ -24,6 +25,7 @@ resource "helm_release" "pingdirectory" {
   wait   = true
 
   replace = true
+  upgrade_install = true
 
   set = [
     {
