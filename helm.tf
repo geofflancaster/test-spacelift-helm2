@@ -24,7 +24,6 @@ resource "helm_release" "pingdirectory" {
   wait   = true
 
   replace = true
-  upgrade_install = true
 
   set = [
     {
