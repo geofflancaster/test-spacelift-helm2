@@ -30,10 +30,10 @@ resource "helm_release" "pingdirectory" {
         name = "global.isMicroserviceDeploy"
         value = "false"
     },
-    {
-      name = "global.ecrRegistryName"
-      value = "705370621539.dkr.ecr.us-west-2.amazonaws.com/dev"
-    },
+    # {
+    #   name = "global.ecrRegistryName"
+    #   value = "705370621539.dkr.ecr.us-west-2.amazonaws.com/dev"
+    # },
     {
       name = "global.imagePullPolicy"
       value = "IfNotPresent"
