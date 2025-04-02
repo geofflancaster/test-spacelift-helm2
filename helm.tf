@@ -14,9 +14,9 @@ resource "helm_release" "opencost" {
 
 resource "helm_release" "pingdirectory" {
   name             = "pingdirectory"
-  repository       = "oci://705370621539.dkr.ecr.us-west-2.amazonaws.com/dev"
+  repository       = "oci://705370621539.dkr.ecr.us-west-2.amazonaws.com/"
   chart            = "p1as-pingdirectory"
-  version          = "v2.1-calvin-pd-test-scim-hotfix-image"
+  version          = "v2.0-release-branch"
   namespace        = "default"
   create_namespace = true
 
