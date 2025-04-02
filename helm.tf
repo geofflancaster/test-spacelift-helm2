@@ -14,9 +14,9 @@ resource "helm_release" "opencost" {
 
 resource "helm_release" "pingdirectory" {
   name             = "pingdirectory"
-  repository       = "oci://705370621539.dkr.ecr.us-west-2.amazonaws.com/"
+  repository       = "oci://public.ecr.aws/r2h3l6e4"
   chart            = "p1as-pingdirectory"
-  version          = "v2.0-release-branch"
+  version          = "v2.0.0"
   namespace        = "default"
   create_namespace = true
 
