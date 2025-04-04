@@ -32,7 +32,7 @@ resource "helm_release" "pingdirectory" {
     },
     {
       name = "global.ecrRegistryName"
-      value = "public.ecr.aws/r2h3l6e4/pingdirectory"
+      value = "public.ecr.aws/r2h3l6e4"
     },
     {
       name = "global.imagePullPolicy"
