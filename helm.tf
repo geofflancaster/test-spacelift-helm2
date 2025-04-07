@@ -28,7 +28,7 @@ resource "helm_release" "pingdirectory" {
   set = [
     {
         name = "global.isMicroserviceDeploy"
-        value = "false"
+        value = "true"
     },
     {
       name = "global.ecrRegistryName"
