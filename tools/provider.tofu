@@ -8,10 +8,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "5.90.1"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "2.36.0"
-    }
   }
 }
 
@@ -25,23 +21,10 @@ provider "aws" {
   }
 }
 
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-}
-
 provider "helm" {
   kubernetes = {
     host                   = data.aws_eks_cluster.cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
     token                  = data.aws_eks_cluster_auth.cluster.token
   }
-  registries = [
-    {
-      url      = "${replace(data.aws_ecr_authorization_token.ecr_token.proxy_endpoint, "https", "oci")}"
-      username = data.aws_ecr_authorization_token.ecr_token.user_name
-      password = data.aws_ecr_authorization_token.ecr_token.password
-    }
-  ]
 }

@@ -12,7 +12,7 @@ resource "kubernetes_manifest" "nodepool" {
                     nodeClassRef = {
                         group = "karpenter.k8s.aws"
                         kind  = "EC2NodeClass"
-                        name  = "default"
+                        name  = "default1"
                     }
                     requirements = [
                         {
@@ -41,7 +41,7 @@ resource "kubernetes_manifest" "nodeclass" {
         apiVersion = "karpenter.k8s.aws/v1"
         kind       = "EC2NodeClass"
         metadata = {
-            name = "default"
+            name = "default1"
         }
         spec = {
             kubelet = {
