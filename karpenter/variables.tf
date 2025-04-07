@@ -4,7 +4,7 @@ variable "cluster_name" {
 }
 
 variable "karpenter_namespace" {
-  default = "karpenter"
+  default = "kube-system"
 }
 
 variable "node_architecture" {
