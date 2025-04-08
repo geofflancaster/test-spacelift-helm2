@@ -68,7 +68,7 @@ resource "aws_iam_role" "karpenter_controller_role" {
             Condition = {
                 StringEquals = {
                     "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:aud": "sts.amazonaws.com",
-                    "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:sub": "system:serviceaccount:karpenter:karpenter"
+                    "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:sub": "system:serviceaccount:${var.karpenter_namespace}:karpenter"
                 }
             }
         }
