@@ -22,7 +22,7 @@ resource "kubernetes_manifest" "tls_secret" {
     "kind"= "Secret",
     "metadata"= {
         "name"= "${each.key}-tls-cert",
-        "namespace"= "default",
+        "namespace"= "ping-cloud",
     },
     "type"= "Opaque"
     }
@@ -40,7 +40,7 @@ resource "kubernetes_manifest" "ingresses" {
             "nginx.ingress.kubernetes.io/force-ssl-redirect": "true"
         },
         "name": "${each.key}-${each.value.service_name}-ingress",
-        "namespace": "default",
+        "namespace": "ping-cloud",
     },
     "spec": {
         "ingressClassName": "nginx-${each.value.ingress_class}",
