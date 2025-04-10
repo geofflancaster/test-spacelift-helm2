@@ -6,7 +6,7 @@ resource "spacelift_stack" "aws_infra" {
   description  = "P1AS AWS Infrastructure"
   name         = "AWS Infra"
   project_root = "inf"
-  repository   = "test-spacelift-helm2"
+  repository   = "geoff-github"
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -25,7 +25,7 @@ resource "spacelift_stack" "tools" {
   description  = "P1AS Tools"
   name         = "Tools"
   project_root = "tools"
-  repository   = "test-spacelift-helm2"
+  repository   = "geoff-github"
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -43,7 +43,7 @@ resource "spacelift_stack" "apps" {
   branch      = "master"
   description = "P1AS apps"
   name        = "Apps"
-  repository  = "test-spacelift-helm2"
+  repository  = "geoff-github"
   space_id    = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -62,7 +62,7 @@ resource "spacelift_stack" "config" {
   description  = "P1AS Application Config"
   name         = "Application Config"
   project_root = "configuration"
-  repository   = "test-spacelift-helm2"
+  repository   = "geoff-github"
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -74,7 +74,7 @@ resource "spacelift_stack" "karpenter" {
   description  = "Karpenter"
   name         = "Karpenter"
   project_root = "karpenter"
-  repository   = "test-spacelift-helm2"
+  repository   = "geoff-github"
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
