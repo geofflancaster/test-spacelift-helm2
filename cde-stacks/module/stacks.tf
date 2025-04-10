@@ -7,7 +7,7 @@ resource "spacelift_stack" "aws_infra" {
   name         = "AWS Infra"
   project_root = "inf"
   repository   = "github.com:geofflancaster/test-spacelift-helm2"
-  space_id     = ""
+  space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
 resource "spacelift_context_attachment" "aws_infra_aws_context" {
@@ -26,7 +26,7 @@ resource "spacelift_stack" "tools" {
   name         = "Tools"
   project_root = "tools"
   repository   = "github.com:geofflancaster/test-spacelift-helm2"
-  space_id     = ""
+  space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
 resource "spacelift_context_attachment" "tools_aws_context" {
@@ -44,7 +44,7 @@ resource "spacelift_stack" "apps" {
   description = "P1AS apps"
   name        = "Apps"
   repository  = "github.com:geofflancaster/test-spacelift-helm2"
-  space_id    = ""
+  space_id    = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
 resource "spacelift_context_attachment" "apps_aws_context" {
@@ -63,7 +63,7 @@ resource "spacelift_stack" "config" {
   name         = "Application Config"
   project_root = "configuration"
   repository   = "github.com:geofflancaster/test-spacelift-helm2"
-  space_id     = ""
+  space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
 resource "spacelift_stack" "karpenter" {
@@ -75,7 +75,7 @@ resource "spacelift_stack" "karpenter" {
   name         = "Karpenter"
   project_root = "karpenter"
   repository   = "github.com:geofflancaster/test-spacelift-helm2"
-  space_id     = ""
+  space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
 resource "spacelift_context_attachment" "karpenter_aws_context" {
