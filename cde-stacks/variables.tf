@@ -3,7 +3,7 @@ variable "customers" {
         name = string
         stages = list(string),
         primary_region = string,
-        secondary_regions = list(string),
+        secondary_regions = optional(list(string), []),
         products = list(string),
     }))
 }
