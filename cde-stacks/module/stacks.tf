@@ -5,8 +5,21 @@ resource "spacelift_stack" "aws_infra" {
   branch       = "master"
   description  = "P1AS AWS Infrastructure"
   name         = "AWS Infra"
-  project_root = "inf"
-  repository   = "geoff-github"
+  raw_git {
+    namespace = "geofflancaster"
+    url = "https://github.com/geofflancaster/test-spacelift-helm2"
+  }
+  repository = "test-spacelift-helm2"
+  project_root = "/inf"
+
+  terraform_version = "1.9.0"
+  terraform_workflow_tool = "OPEN_TOFU"
+  terraform_smart_sanitization = true
+
+  additional_project_globs = [""]
+  enable_well_known_secret_masking = true
+  github_action_deploy = false
+
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -24,8 +37,20 @@ resource "spacelift_stack" "tools" {
   branch       = "master"
   description  = "P1AS Tools"
   name         = "Tools"
-  project_root = "tools"
-  repository   = "geoff-github"
+  raw_git {
+    namespace = "geofflancaster"
+    url = "https://github.com/geofflancaster/test-spacelift-helm2"
+  }
+  repository = "test-spacelift-helm2"
+  project_root = "/tools"
+
+  terraform_version = "1.9.0"
+  terraform_workflow_tool = "OPEN_TOFU"
+  terraform_smart_sanitization = true
+
+  additional_project_globs = [""]
+  enable_well_known_secret_masking = true
+  github_action_deploy = false
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -42,8 +67,20 @@ resource "spacelift_stack" "apps" {
   autodeploy  = true
   branch      = "master"
   description = "P1AS apps"
-  name        = "Apps"
-  repository  = "geoff-github"
+  name = "Ping Apps"
+  raw_git {
+    namespace = "geofflancaster"
+    url = "https://github.com/geofflancaster/test-spacelift-helm2"
+  }
+  repository = "test-spacelift-helm2"
+
+  terraform_version = "1.9.0"
+  terraform_workflow_tool = "OPEN_TOFU"
+  terraform_smart_sanitization = true
+
+  additional_project_globs = [""]
+  enable_well_known_secret_masking = true
+  github_action_deploy = false
   space_id    = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -61,8 +98,20 @@ resource "spacelift_stack" "config" {
   branch       = "master"
   description  = "P1AS Application Config"
   name         = "Application Config"
-  project_root = "configuration"
-  repository   = "geoff-github"
+  raw_git {
+    namespace = "geofflancaster"
+    url = "https://github.com/geofflancaster/test-spacelift-helm2"
+  }
+  repository = "test-spacelift-helm2"
+  project_root = "/configuration"
+
+  terraform_version = "1.9.0"
+  terraform_workflow_tool = "OPEN_TOFU"
+  terraform_smart_sanitization = true
+
+  additional_project_globs = [""]
+  enable_well_known_secret_masking = true
+  github_action_deploy = false
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
@@ -73,8 +122,20 @@ resource "spacelift_stack" "karpenter" {
   branch       = "master"
   description  = "Karpenter"
   name         = "Karpenter"
-  project_root = "karpenter"
-  repository   = "geoff-github"
+  raw_git {
+    namespace = "geofflancaster"
+    url = "https://github.com/geofflancaster/test-spacelift-helm2"
+  }
+  repository = "test-spacelift-helm2"
+  project_root = "/karpenter"
+
+  terraform_version = "1.9.0"
+  terraform_workflow_tool = "OPEN_TOFU"
+  terraform_smart_sanitization = true
+
+  additional_project_globs = [""]
+  enable_well_known_secret_masking = true
+  github_action_deploy = false
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 }
 
