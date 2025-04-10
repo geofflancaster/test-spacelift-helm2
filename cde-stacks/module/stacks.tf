@@ -11,9 +11,9 @@ resource "spacelift_stack" "aws_infra" {
 }
 
 resource "spacelift_context_attachment" "aws_infra_aws_context" {
-  for_each   = spacelift_stack.aws_infra.*.id
+  for_each   = spacelift_stack.aws_infra
   context_id = "csgbeluga"
-  stack_id   = each.key
+  stack_id   = each.value.id
   priority   = 0
 }
 
@@ -30,9 +30,9 @@ resource "spacelift_stack" "tools" {
 }
 
 resource "spacelift_context_attachment" "tools_aws_context" {
-  for_each   = spacelift_stack.tools.*.id
+  for_each   = spacelift_stack.tools
   context_id = "csgbeluga"
-  stack_id   = each.key
+  stack_id   = each.value.id
   priority   = 0
 }
 
@@ -48,9 +48,9 @@ resource "spacelift_stack" "apps" {
 }
 
 resource "spacelift_context_attachment" "apps_aws_context" {
-  for_each   = spacelift_stack.apps.*.id
+  for_each   = spacelift_stack.apps
   context_id = "csgbeluga"
-  stack_id   = each.key
+  stack_id   = each.value.id
   priority   = 0
 }
 
@@ -79,8 +79,8 @@ resource "spacelift_stack" "karpenter" {
 }
 
 resource "spacelift_context_attachment" "karpenter_aws_context" {
-  for_each   = spacelift_stack.karpenter.*.id
+  for_each   = spacelift_stack.karpenter
   context_id = "csgbeluga"
-  stack_id   = each.key
+  stack_id   = each.value.id
   priority   = 0
 }
