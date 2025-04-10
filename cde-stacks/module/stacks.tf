@@ -4,7 +4,7 @@ resource "spacelift_stack" "aws_infra" {
   autodeploy   = true
   branch       = "master"
   description  = "P1AS AWS Infrastructure"
-  name         = "AWS Infra"
+  name         = "${var.customer_name} ${each.key} AWS Infra"
   raw_git {
     namespace = "geofflancaster"
     url = "https://github.com/geofflancaster/test-spacelift-helm2"
@@ -36,7 +36,7 @@ resource "spacelift_stack" "tools" {
   autodeploy   = true
   branch       = "master"
   description  = "P1AS Tools"
-  name         = "Tools"
+  name         = "${var.customer_name} ${each.key} Tools"
   raw_git {
     namespace = "geofflancaster"
     url = "https://github.com/geofflancaster/test-spacelift-helm2"
@@ -67,7 +67,7 @@ resource "spacelift_stack" "apps" {
   autodeploy  = true
   branch      = "master"
   description = "P1AS apps"
-  name = "Ping Apps"
+  name         = "${var.customer_name} ${each.key} Ping Apps"
   raw_git {
     namespace = "geofflancaster"
     url = "https://github.com/geofflancaster/test-spacelift-helm2"
@@ -97,7 +97,7 @@ resource "spacelift_stack" "config" {
   autodeploy   = true
   branch       = "master"
   description  = "P1AS Application Config"
-  name         = "Application Config"
+  name         = "${var.customer_name} ${each.key} Application Config"
   raw_git {
     namespace = "geofflancaster"
     url = "https://github.com/geofflancaster/test-spacelift-helm2"
@@ -121,7 +121,7 @@ resource "spacelift_stack" "karpenter" {
   autodeploy   = true
   branch       = "master"
   description  = "Karpenter"
-  name         = "Karpenter"
+  name         = "${var.customer_name} ${each.key} Karpenter"
   raw_git {
     namespace = "geofflancaster"
     url = "https://github.com/geofflancaster/test-spacelift-helm2"
