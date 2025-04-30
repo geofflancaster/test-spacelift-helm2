@@ -11,7 +11,7 @@ resource "helm_release" "loki" {
 
   set {
     name  = "loki.persistence.storageClassName"
-    value = "s3"
+    value = "gp3"
   }
 
   set {
@@ -42,20 +42,20 @@ resource "helm_release" "loki" {
   set {
     name = "loki.schemaConfig"
     value = <<EOF
-    configs:
-      - from: "2024-04-01"
-        store: tsdb
-        object_store: s3
-        schema: v13
-        index:
-          prefix: loki_index_
-          period: 24h
-    storage_config:
-        aws:
-            region: ${var.loki_bucket_region}
-            bucketnames: ${var.loki_bucket_name}
-            s3forcepathstyle: false
-    EOF
+configs:
+    - from: "2024-04-01"
+    store: tsdb
+    object_store: s3
+    schema: v13
+    index:
+        prefix: loki_index_
+        period: 24h
+storage_config:
+    aws:
+    region: "${var.loki_bucket_region}"
+    bucketnames: "${var.loki_bucket_name}"
+    s3forcepathstyle: false
+EOF
   }
   set {
     name = "loki.pattern_ingester.enabled"
@@ -64,10 +64,10 @@ resource "helm_release" "loki" {
   set {
     name = "loki.limits_config"
     value = <<EOF
-    allow_structured_metadata: true
-    volume_enabled: true
-    retention_period: 672h
-    EOF
+allow_structured_metadata: true
+volume_enabled: true
+retention_period: 672h
+EOF
   }
   set {
     name = "loki.querier.max_concurrent"
