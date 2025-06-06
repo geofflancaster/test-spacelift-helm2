@@ -138,11 +138,7 @@ resource "spacelift_stack" "karpenter" {
   github_action_deploy = false
   space_id     = "lab-01JQFX8YRP7DH4MCQYETZG4ET6"
 
-  terraform {
-    backend {
-      backend_type = "s3"
-    }
-  }
+  manage_state = false
 }
 
 resource "spacelift_context_attachment" "karpenter_aws_context" {
