@@ -5,6 +5,7 @@ variable "cluster_name" {
 
 variable "aws_role_arn" {
   type = string
+  default = ""
 }
 
 variable "loki_bucket_name" {
