@@ -15,14 +15,14 @@ resource "helm_release" "cert_manager" {
   replace = true
 }
 
-resource "kubernetes_manifest" "cert_manager_crd" {
+resource "kubectl_manifest" "cert_manager_crd" {
   for_each = fileset(path.module, "crds/cert-manager/*.yaml")
-  manifest = yamldecode(file("${path.module}/${each.value}"))
+  yaml_body = yamldecode(file("${path.module}/${each.value}"))
 }
 
-resource "kubernetes_manifest" "pd_operator_webhook_cert" {
+resource "kubectl_manifest" "pd_operator_webhook_cert" {
   depends_on = [ kubernetes_manifest.cert_manager_issuer_selfsigned ]
-  manifest = yamldecode(<<EOF
+  yaml_body = yamldecode(<<EOF
     apiVersion: cert-manager.io/v1
     kind: Certificate
     metadata:
@@ -40,8 +40,8 @@ resource "kubernetes_manifest" "pd_operator_webhook_cert" {
   )
 }
 
-resource "kubernetes_manifest" "cert_manager_issuer_selfsigned" {
-  manifest = yamldecode(<<EOF
+resource "kubectl_manifest" "cert_manager_issuer_selfsigned" {
+  yaml_body = yamldecode(<<EOF
     apiVersion: cert-manager.io/v1
     kind: Issuer
     metadata:

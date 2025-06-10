@@ -1,5 +1,5 @@
-resource "kubernetes_manifest" "loki_storageclass" {
-  manifest = yamldecode(<<EOF
+resource "kubectl_manifest" "loki_storageclass" {
+  yaml_body = yamldecode(<<EOF
     allowVolumeExpansion: true
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
@@ -29,7 +29,7 @@ resource "helm_release" "loki" {
   values = [
     <<-EOT
     loki.persistence.enabled: true
-    loki.persistence.storageClassName: ${kubernetes_manifest.loki_storageclass.manifest.metadata.name}
+    loki.persistence.storageClassName: ${kubectl_manifest.loki_storageclass.yaml_body_parsed.metadata.name}
     loki.persistence.size: 10Gi
     loki.service.type: ClusterIP
     deploymentMode: SimpleScalable
