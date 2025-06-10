@@ -1,5 +1,5 @@
 resource "kubectl_manifest" "loki_storageclass" {
-  yaml_body = yamldecode(<<EOF
+  yaml_body = <<EOF
     allowVolumeExpansion: true
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
@@ -15,7 +15,6 @@ resource "kubectl_manifest" "loki_storageclass" {
     reclaimPolicy: Delete
     volumeBindingMode: WaitForFirstConsumer
     EOF
-  )
 }
 
 resource "helm_release" "loki" {

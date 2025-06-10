@@ -1,5 +1,5 @@
 resource "helm_release" "cert_manager" {
-  depends_on = [kubernetes_manifest.cert_manager_crd]
+  depends_on = [kubectl_manifest.cert_manager_crd]
 
   name       = "cert-manager"
   repository = "https://charts.jetstack.io"
@@ -17,12 +17,12 @@ resource "helm_release" "cert_manager" {
 
 resource "kubectl_manifest" "cert_manager_crd" {
   for_each = fileset(path.module, "crds/cert-manager/*.yaml")
-  yaml_body = yamldecode(file("${path.module}/${each.value}"))
+  yaml_body = file("${path.module}/${each.value}")
 }
 
 resource "kubectl_manifest" "pd_operator_webhook_cert" {
   depends_on = [ kubernetes_manifest.cert_manager_issuer_selfsigned ]
-  yaml_body = yamldecode(<<EOF
+  yaml_body = <<EOF
     apiVersion: cert-manager.io/v1
     kind: Certificate
     metadata:
@@ -37,11 +37,10 @@ resource "kubectl_manifest" "pd_operator_webhook_cert" {
         name: selfsigned-issuer
         kind: Issuer
     EOF
-  )
 }
 
 resource "kubectl_manifest" "cert_manager_issuer_selfsigned" {
-  yaml_body = yamldecode(<<EOF
+  yaml_body = <<EOF
     apiVersion: cert-manager.io/v1
     kind: Issuer
     metadata:
@@ -50,5 +49,4 @@ resource "kubectl_manifest" "cert_manager_issuer_selfsigned" {
     spec:
       selfSigned: {}
     EOF
-  )
 }
