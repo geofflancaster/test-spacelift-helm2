@@ -273,7 +273,7 @@ resource "aws_iam_role" "loki_s3_role" {
         {
             Effect = "Allow",
             Principal = {
-                Federated = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+                Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}"
             },
             Action = "sts:AssumeRoleWithWebIdentity",
             Condition = {
