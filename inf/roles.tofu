@@ -225,3 +225,64 @@ resource "aws_iam_policy_attachment" "karpenter_controller_policy_attachment" {
     policy_arn = aws_iam_policy.karpenter_controller_policy.arn
     roles = [aws_iam_role.karpenter_controller_role.name]
 }
+
+data "aws_iam_policy_document" "loki_s3_policy" {
+    statement {
+        actions = [
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject",
+            "s3:ListBucket"
+        ]
+        resources = [
+            "${aws_s3_bucket.loki.arn}/*",
+            "${aws_s3_bucket.loki.arn}",
+        ]
+    }
+    statement {
+        actions = [
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject",
+            "s3:ListBucket"
+        ]
+        resources = [
+            "${aws_s3_bucket.loki_admin.arn}/*",
+            "${aws_s3_bucket.loki_admin.arn}",
+        ]
+    }
+    statement {
+        actions = [
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject",
+            "s3:ListBucket"
+        ]
+        resources = [
+            "${aws_s3_bucket.loki_ruler.arn}/*",
+            "${aws_s3_bucket.loki_ruler.arn}",
+        ]
+    }
+}
+
+resource "aws_iam_role" "loki_s3_role" {
+    name = "${var.cluster_name}-LokiS3Role"
+    assume_role_policy = jsonencode({
+        Version = "2012-10-17",
+        Statement = [
+        {
+            Effect = "Allow",
+            Principal = {
+                Federated = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+            },
+            Action = "sts:AssumeRoleWithWebIdentity",
+            Condition = {
+                StringEquals = {
+                    "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:aud": "sts.amazonaws.com",
+                    "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:sub": "system:serviceaccount:loki:loki"
+                }
+            }
+        }
+        ]
+    })
+}
