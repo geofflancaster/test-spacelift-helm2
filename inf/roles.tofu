@@ -292,8 +292,3 @@ resource "aws_iam_role_policy" "loki_s3_policy" {
     role = aws_iam_role.loki_s3_role.name
     policy = data.aws_iam_policy_document.loki_s3_policy.json
 }
-
-resource "aws_iam_role_policy_attachment" "loki_s3_policy_attachment" {
-    role       = aws_iam_role.loki_s3_role.name
-    policy_arn = aws_iam_role_policy.loki_s3_policy.arn
-}
