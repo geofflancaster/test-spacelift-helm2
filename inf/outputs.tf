@@ -20,3 +20,6 @@ output "loki_admin_bucket" {
 output "loki_admin_bucket_region" {
   value = aws_s3_bucket.loki_admin.region
 }
+output "loki_s3_role" {
+  value = aws_iam_role.loki_s3_role.arn
+}
