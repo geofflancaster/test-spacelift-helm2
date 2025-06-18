@@ -279,7 +279,7 @@ resource "aws_iam_role" "loki_s3_role" {
             Condition = {
                 StringEquals = {
                     "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:aud": "sts.amazonaws.com",
-                    "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:sub": "system:serviceaccount:loki:loki"
+                    "${trimprefix(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://")}:sub": "system:serviceaccount:monitoring:loki"
                 }
             }
         }
