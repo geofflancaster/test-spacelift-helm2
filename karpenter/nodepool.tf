@@ -7,10 +7,6 @@ resource "kubernetes_manifest" "nodepool" {
             name = "default"
         }
         spec = {
-            disruption = {
-                consolidationPolicy = "WhenUnderutilized"
-                consolidateAfter = "5m"
-            }
             template = {
                 spec = {
                     nodeClassRef = {
