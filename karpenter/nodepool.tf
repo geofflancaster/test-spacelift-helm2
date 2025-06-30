@@ -26,7 +26,7 @@ resource "kubernetes_manifest" "nodepool" {
                         }, {
                             key = "karpenter.sh/capacity-type"
                             operator = "In"
-                            values = ["on-demand", "spot"]
+                            values = ["spot"]
                         }, {
                             key = "karpenter.k8s.aws/instance-cpu"
                             operator= "In"
